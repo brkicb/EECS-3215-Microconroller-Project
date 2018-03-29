@@ -747,8 +747,8 @@ int main(void) {
 					break;
 				}
 			}
+    		}
+    		delay(2);
     	}
-    	delay(2);
-    }
-    return 0 ;
+	return 0 ;
 }
