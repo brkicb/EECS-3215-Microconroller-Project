@@ -69,70 +69,70 @@ void delay(int d) {
 	}
 }
 void displayOne(void) {
-	PTA->PSOR = 0b00000000000000000000000000000010;		// A bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000000000000010000;		// D bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000000000000100000;		// E bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000010000000000000;		// F bits 13,12,5,4,2,1 Segments F,
-	PTE->PSOR = 0b00000000000000000000000000000010;		// G bits 13,12,5,4,2,1 Segments F,
+	PTA->PSOR = 0b00000000000000000000000000000010;		// Segment A
+	PTA->PSOR = 0b00000000000000000000000000010000;		// Segment D
+	PTA->PSOR = 0b00000000000000000000000000100000;		// Segment E
+	PTA->PSOR = 0b00000000000000000010000000000000;		// Segment F
+	PTE->PSOR = 0b00000000000000000000000000000010;		// Segment F
 }
 void displayTwo(void) {
-	PTA->PSOR = 0b00000000000000000001000000000000;		// C bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000010000000000000;		// F bits 13,12,5,4,2,1 Segments F,
+	PTA->PSOR = 0b00000000000000000001000000000000;		// Segment C
+	PTA->PSOR = 0b00000000000000000010000000000000;		// Segment F
 }
 void displayThree(void) {
-	PTA->PSOR = 0b00000000000000000000000000100000;		// E bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000010000000000000;		// F bits 13,12,5,4,2,1 Segments F,
+	PTA->PSOR = 0b00000000000000000000000000100000;		// Segment E
+	PTA->PSOR = 0b00000000000000000010000000000000;		// Segment F
 }
 void displayFour(void) {
-	PTA->PSOR = 0b00000000000000000000000000000010;		// A bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000000000000010000;		// D bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000000000000100000;		// E bits 13,12,5,4,2,1 Segments F,
+	PTA->PSOR = 0b00000000000000000000000000000010;		// Segment A
+	PTA->PSOR = 0b00000000000000000000000000010000;		// Segment D
+	PTA->PSOR = 0b00000000000000000000000000100000;		// Segment E
 }
 void displayFive(void) {
-	PTA->PSOR = 0b00000000000000000000000000000100;		// B bits 13,12,5,4,2,1 Segments F,
-	PTA->PSOR = 0b00000000000000000000000000100000;		// E bits 13,12,5,4,2,1 Segments F,
+	PTA->PSOR = 0b00000000000000000000000000000100;		// Segment B
+	PTA->PSOR = 0b00000000000000000000000000100000;		// Segment E
 }
 void setup(void) {
 	// Light up LEDs. Start by setting all digit values to output zero.
 	PTD->PCOR = 0b00000000000000000000000000111100;		// bits 5,4,3,2: Digits 4,3,2,1
-	PTA->PCOR = 0b00000000000000000011000000110110;		// bits 13,12,5,4,3,2: Segments F,C,E,D,
-	PTE->PCOR = 0b00000000000000000000000000000010;		// bit 0: Segment G
+	PTA->PCOR = 0b00000000000000000011000000110110;		// bits 13,12,5,4,2,1: Segments F,C,E,D,B,A 
+	PTE->PCOR = 0b00000000000000000000000000000010;		// bit 1: Segment G
 }
 void digitOn(int digit) {
 	setup();
 	if (digit == 1) {
 		// turn on Digit 1
-		PTD->PSOR = 0b00000000000000000000000000000100;		// Digit 1 on. bits 5,4,3,2: Digits
+		PTD->PSOR = 0b00000000000000000000000000000100;		// Digit 1 on. bits 2: Digits 1
 	}
 	else if (digit == 2) {
 		// turn on digit 2
-		PTD->PSOR = 0b00000000000000000000000000001000;		// Digit 2 on. bits 5,4,3,2: Digits
+		PTD->PSOR = 0b00000000000000000000000000001000;		// Digit 2 on. bits 3: Digits 2
 	}
 	else if (digit == 3) {
 		// turn on digit 3
-		PTD->PSOR = 0b00000000000000000000000000010000;
+		PTD->PSOR = 0b00000000000000000000000000010000;		// Digit 3 on. bits 4: Digits 3
 	}
 	else if (digit == 4) {
 		// turn on digit 4
-		PTD->PSOR = 0b00000000000000000000000000100000;
+		PTD->PSOR = 0b00000000000000000000000000100000;		// Digit 4 on. bits 5: Digits 4
 	}
 }
 void digitOff(int digit) {
 	if (digit == 1) {
 		// turn off digit 1
-		PTD->PCOR = 0b00000000000000000000000000000100;		// Digit 1 off. Bits 5,4,3,2: Digits
+		PTD->PCOR = 0b00000000000000000000000000000100;		// Digit 1 off. Bits 2: Digits 1
 	}
 	else if (digit == 2) {
 		// turn off digit 2
-		PTD->PCOR = 0b00000000000000000000000000001000;
+		PTD->PCOR = 0b00000000000000000000000000001000;		// Digit 2 off. Bits 3: Digits 2
 	}
 	else if (digit == 3) {
 		// turn off digit 3
-		PTD->PCOR = 0b00000000000000000000000000010000;
+		PTD->PCOR = 0b00000000000000000000000000010000;		// Digit 3 off. Bits 4: Digits 3
 	}
 	else if (digit == 4) {
 		// turn off digit 4
-		PTD->PCOR = 0b00000000000000000000000000100000;
+		PTD->PCOR = 0b00000000000000000000000000100000;		// Digit 4 off. Bits 5: Digits 4
 	}
 }
 void redLED(int status) {
@@ -452,7 +452,7 @@ int main(void) {
     PORTD->PCR[3] = 0x100;		// PortD3: Common Anode, Digit 2
     PORTD->PCR[4] = 0x100;		// PortD4: Common Anode, Digit 3
     PORTD->PCR[5] = 0x100;		// PortD5: Common Anode, Digit 4
-    PORTE->PCR[1] = 0x100;		// PortE0: Cathode Pin 15 on 7 segment ("G")
+    PORTE->PCR[1] = 0x100;		// PortE1: Cathode Pin 15 on 7 segment ("G")
 
     // Ports for the LEDs
     PORTD->PCR[6] = 0x100;		// red LED
@@ -463,7 +463,7 @@ int main(void) {
     PORTC->PCR[1] = 0x000;
     PORTC->PCR[2] = 0x000;
 
-    // Input ports for password reset and re-enter buttons
+    // Input ports for input buttons, password reset button, and re-enter button
     PORTB->PCR[16] = 0x103;
     PORTB->PCR[17] = 0x103;
     PORTB->PCR[18] = 0x103;
