@@ -560,12 +560,20 @@ int main(void) {
     				digitOff(4);
     				k = 0;
     				for (check = 0; check < 4; ++check) {
-    				    correct[check] = FALSE;
+    				    	correct[check] = FALSE;
     				}
     				break;
     			}
     			if ((i & 0x00020000) != 0) {
     				// reset password button
+				digitOff(1);
+    				digitOff(2);
+    				digitOff(3);
+    				digitOff(4);
+    				k = 0;
+    				for (check = 0; check < 4; ++check) {
+    				    	correct[check] = FALSE;
+    				}
     				break;
     			}
     			if ((j & 0x0040) != 0) {
