@@ -161,21 +161,21 @@ void blueLED(int status) {
 }
 void ready(void) {
 	if (start == TRUE) {
-		blueLED(0);
-	    redLED(1);
-	    delay(1);
-	    redLED(0);
-	    delay(1);
-	    greenLED(1);
-	    delay(1);
-	    greenLED(0);
-	    delay(1);
-	    blueLED(1);
-	    delay(1);
-	    blueLED(0);
-	    delay(1);
-	    blueLED(1);
-	    start = FALSE;
+	        blueLED(0);
+	    	redLED(1);
+	    	delay(1);
+	    	redLED(0);
+	    	delay(1);
+	    	greenLED(1);
+	    	delay(1);
+	    	greenLED(0);
+	    	delay(1);
+	    	blueLED(1);
+	    	delay(1);
+	    	blueLED(0);
+	    	delay(1);
+	    	blueLED(1);
+	    	start = FALSE;
 	}
 }
 void unlocked(void) {
@@ -212,7 +212,9 @@ void wrongPasswd(void) {
 		attempt++;
 	}
 	else {
-	    attemptDelay *= 2;
+		if (attemptDelay <= 256) {
+	        	attemptDelay *= 2;
+		}
 	}
 }
 void resetReady(void) {
@@ -487,7 +489,7 @@ int main(void) {
     PTA->PCOR |= 0b00000000000000000011000000110110;		// bits 13,12,5,4,3,2: Segments F,C,E,D,
     PTB->PCOR |= 0b00000000000010000000000000000000;		// bit 0: Segment G
 
-    /* Enter an infinite loop, just incrementing a counter. */
+    /* Enter an infinite loop */
     while(1) {
     	// read channel 8 of ADC0
     	ADC0->SC1[0] = 0x08;
